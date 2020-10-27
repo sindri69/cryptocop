@@ -33,7 +33,7 @@ namespace Cryptocop.Software.API.Models.Dtos
         public float TotalPrice {get; set;}
 
         public List<OrderItemDto> OrderItems {get; set; }
-        //vantar using orderitemdto
+        //vantar using orderitemdto?
         //spurning hvort þetta sé rétt týpa af lista til að nota
 
     }

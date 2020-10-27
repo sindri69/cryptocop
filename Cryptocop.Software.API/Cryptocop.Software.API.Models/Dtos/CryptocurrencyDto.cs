@@ -1,4 +1,4 @@
-using System;
+
 
 namespace Cryptocop.Software.API.Models.Dtos
 {

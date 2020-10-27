@@ -5,9 +5,7 @@ namespace Cryptocop.Software.API.Models.InputModels
     public class LoginInputModel
     {
         [Required]
-        //[RegularExpression ("(http|ftp|https)://[\\w-]+(.[\\w-]+)+([\\w-.,@?^=%&amp;:/~+#]*[\\w-@?^=%&amp;/~+#])?")]
-        //[RegularExpression ("(\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*\s*)")]
-        //vantar regex sem virkar til ad tjekka a email
+        [EmailAddress]
 
         public string Email { get; set; }
 

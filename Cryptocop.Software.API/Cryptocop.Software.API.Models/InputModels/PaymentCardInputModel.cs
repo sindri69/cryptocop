@@ -9,13 +9,13 @@ namespace Cryptocop.Software.API.Models.InputModels
         public string CardholderName { get; set; }
 
         [Required]
-        //vantar regex til að validatea creditcardnumber
+        [CreditCard]
         public string CardNumber { get; set; }
 
-        //vantar regex til að tjekka hvort þetta sé á milli 1-12
+        [Range(1,12)]
         public int Month { get; set; }
         
-        //vantar range til að tjékka hvort þetta sé á milli 0-99
+        [Range(0,99)]
         public int Year { get; set; }
     }
 }

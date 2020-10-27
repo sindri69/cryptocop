@@ -1,5 +1,3 @@
-using System;
-
 namespace Cryptocop.Software.API.Models.Dtos
 {
   //á þessi class að erfa ehv?

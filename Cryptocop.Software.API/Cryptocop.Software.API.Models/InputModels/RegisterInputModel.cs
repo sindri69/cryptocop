@@ -5,7 +5,7 @@ namespace Cryptocop.Software.API.Models.InputModels
     public class RegisterInputModel
     {
         [Required]
-        //vantar regex til að validatea email
+        [EmailAddress]
         public string Email { get; set; }
 
         [Required]
@@ -14,11 +14,13 @@ namespace Cryptocop.Software.API.Models.InputModels
 
         [Required]
         [MinLength(8)]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
         
         [Required]
         [MinLength(8)]
-        //regex til ad tjekka hvort þetta se sami strengur og pw
+        [DataType(DataType.Password)]
+        [Compare("Password")]
         public string PasswordConfirmation { get; set; }
     }
 }

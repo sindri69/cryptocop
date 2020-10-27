@@ -16,7 +16,7 @@ namespace Cryptocop.Software.API.Models.Dtos
 
         public string Country {get; set;}
 
-        public DateTime City {get; set;}
+        public string City {get; set;}
 
     }
 }

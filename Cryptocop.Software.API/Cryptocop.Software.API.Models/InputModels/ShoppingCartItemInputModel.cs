@@ -8,7 +8,7 @@ namespace Cryptocop.Software.API.Models.InputModels
         public string ProductIdentifier { get; set; }
 
         [Required]
-        //vantar regex til ad tjekka hvort þetta sé frá og með 0.01 og uppí float maximum value
+        [Range(0.01, float.MaxValue)]
         public float? Quantity { get; set; }
 
     }
