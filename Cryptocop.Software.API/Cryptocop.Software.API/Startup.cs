@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Cryptocop.Software.API.Repositories.Contexts;
 
 namespace Cryptocop.Software.API
 {
@@ -25,6 +27,13 @@ namespace Cryptocop.Software.API
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.SuppressModelStateInvalidFilter = true;
+            });
+            services.AddDbContext<CryptocopDbContext>(options => 
+            {
+                options.UseNpgsql(Configuration.GetConnectionString("CryptocopDatabase"), options =>  {
+                    options.MigrationsAssembly(Assembly.GetExecutingAssembly().FullName);
+                });
+
             });
         }
 

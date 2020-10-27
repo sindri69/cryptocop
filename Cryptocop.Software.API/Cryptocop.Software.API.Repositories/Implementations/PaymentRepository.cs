@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Cryptocop.Software.API.Repositories.Helpers;
 using Cryptocop.Software.API.Repositories.Interfaces;
+using Cryptocop.Software.API.Models.InputModels;
+using Cryptocop.Software.API.Models.Dtos;
 
 namespace Cryptocop.Software.API.Repositories.Implementations
 {
