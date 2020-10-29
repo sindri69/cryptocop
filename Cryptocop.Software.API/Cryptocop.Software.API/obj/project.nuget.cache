@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5/sxIgLVckT7YES30uZRLj/G0JNT6KBs/JzC0txzIu8mGRDFkH/auh2+0i+NwMGNKrGHLbevqF2edJZ2AkhZtw==",
+  "dgSpecHash": "Kn2lujcx63/qBthczoDPi7TaiLZhdV8jxHMb+Aj/ugVHBR2QQwl5zKoMas6Y9E9oUx/WXqtDk4GhgcmJlxUarg==",
   "success": true,
   "projectFilePath": "C:\\Users\\David\\Desktop\\dis_shit\\vefthjonustur\\final_assignment\\cryptocop\\Cryptocop.Software.API\\Cryptocop.Software.API\\Cryptocop.Software.API.csproj",
   "expectedPackageFiles": [
@@ -59,7 +59,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
-    "C:\\Users\\David\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\David\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\David\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\David\\.nuget\\packages\\npgsql\\4.1.3.1\\npgsql.4.1.3.1.nupkg.sha512",
     "C:\\Users\\David\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\3.1.4\\npgsql.entityframeworkcore.postgresql.3.1.4.nupkg.sha512",

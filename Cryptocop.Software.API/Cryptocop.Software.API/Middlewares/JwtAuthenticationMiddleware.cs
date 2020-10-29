@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using System.Text;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Cryptocop.Software.API.Middlewares
 {
@@ -40,7 +42,7 @@ namespace Cryptocop.Software.API.Middlewares
               await context.Response.WriteAsync("JWT token provided is invalid.");
             }
           }
-        }
+        };
         
       
       });
