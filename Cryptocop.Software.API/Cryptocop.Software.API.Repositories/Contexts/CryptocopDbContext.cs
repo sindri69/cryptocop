@@ -32,7 +32,7 @@ namespace Cryptocop.Software.API.Repositories.Contexts
 
       modelBuilder.Entity<OrderItem>()
         .HasOne(m => m.Order)
-        .WithMany(u => OrderItems);
+        .WithMany(u => u.OrderItems);
     }
 
     //setup dbsets which function as our tables

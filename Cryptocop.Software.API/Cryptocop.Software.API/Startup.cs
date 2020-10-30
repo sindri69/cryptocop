@@ -7,6 +7,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Cryptocop.Software.API.Repositories.Contexts;
 using System.Reflection;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Cryptocop.Software.API.Middlewares;
+using Cryptocop.Software.API.Services.Interfaces;
+using Cryptocop.Software.API.Services.Implementations;
 
 namespace Cryptocop.Software.API
 {
@@ -36,6 +40,29 @@ namespace Cryptocop.Software.API
                 });
 
             });
+
+            services.AddAuthentication(config =>
+            {
+                config.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtTokenAuthentication(Configuration);
+
+            var jwtConfig = Configuration.GetSection("JwtConfig");
+            services.AddTransient<ITokenService>((c) =>
+                new TokenService(
+                    jwtConfig.GetSection("secret").Value,
+                    jwtConfig.GetSection("expirationInMinutes").Value,
+                    jwtConfig.GetSection("issuer").Value,
+                    jwtConfig.GetSection("audience").Value));
+            services.AddTransient<IAccountService, AccountService>();
+            services.AddTransient<IAddressService, AddressService>();
+            services.AddTransient<ICryptoCurrencyService, CryptoCurrencyService>();
+            services.AddTransient<IExchangeService, ExchangeService>();
+            services.AddTransient<IJwtTokenService, JwtTokenService>();
+            services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IPaymentService, PaymentService>();
+            services.AddTransient<IQueueService, QueueService>();
+            services.AddTransient<IShoppingCartService, ShoppingCartService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
