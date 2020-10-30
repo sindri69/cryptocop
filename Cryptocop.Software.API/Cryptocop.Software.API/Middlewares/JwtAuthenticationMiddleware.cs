@@ -1,9 +1,13 @@
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
-using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Cryptocop.Software.API.Services.Interfaces;
 
 namespace Cryptocop.Software.API.Middlewares
 {
@@ -21,7 +25,7 @@ namespace Cryptocop.Software.API.Middlewares
         x.SaveToken = true;
         x.TokenValidationParameters = new TokenValidationParameters
         {
-          IssuerSigninKey = new SymmetricSecurityKey(key),
+          IssuerSigningKey = new SymmetricSecurityKey(key),
           ValidateIssuer = true,
           ValidateAudience = true,
           ValidIssuer = issuer,
@@ -34,9 +38,9 @@ namespace Cryptocop.Software.API.Middlewares
           {
             var claim = context.Principal.Claims.FirstOrDefault(c => c.Type == "tokenId").Value;
             int.TryParse(claim, out var tokenId);
-            var accountService = context.HttpContext.RequestServices.GetService<IAccountService>();
+            var jwtTokenService = context.HttpContext.RequestServices.GetService<IJwtTokenService>();
 
-            if(accountService.Service.IsTokenBlacklisted(tokenId))
+            if(jwtTokenService.IsTokenBlacklisted(tokenId))
             {
               context.Response.StatusCode = 401;
               await context.Response.WriteAsync("JWT token provided is invalid.");

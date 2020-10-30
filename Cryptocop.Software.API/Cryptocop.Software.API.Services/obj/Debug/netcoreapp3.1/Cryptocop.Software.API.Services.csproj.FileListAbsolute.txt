@@ -1,0 +1,14 @@
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\Cryptocop.Software.API\Cryptocop.Software.API.Services\obj\Debug\netcoreapp3.1\Cryptocop.Software.API.Services.csprojAssemblyReference.cache
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\Cryptocop.Software.API\Cryptocop.Software.API.Services\obj\Debug\netcoreapp3.1\Cryptocop.Software.API.Services.AssemblyInfoInputs.cache
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\Cryptocop.Software.API\Cryptocop.Software.API.Services\obj\Debug\netcoreapp3.1\Cryptocop.Software.API.Services.AssemblyInfo.cs
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\Cryptocop.Software.API\Cryptocop.Software.API.Services\obj\Debug\netcoreapp3.1\Cryptocop.Software.API.Services.csproj.CoreCompileInputs.cache
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\Cryptocop.Software.API\Cryptocop.Software.API.Services\bin\Debug\netcoreapp3.1\Cryptocop.Software.API.Services.deps.json
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\Cryptocop.Software.API\Cryptocop.Software.API.Services\bin\Debug\netcoreapp3.1\Cryptocop.Software.API.Services.dll
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\Cryptocop.Software.API\Cryptocop.Software.API.Services\bin\Debug\netcoreapp3.1\Cryptocop.Software.API.Services.pdb
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\Cryptocop.Software.API\Cryptocop.Software.API.Services\bin\Debug\netcoreapp3.1\Cryptocop.Software.API.Models.dll
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\Cryptocop.Software.API\Cryptocop.Software.API.Services\bin\Debug\netcoreapp3.1\Cryptocop.Software.API.Repositories.dll
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\Cryptocop.Software.API\Cryptocop.Software.API.Services\bin\Debug\netcoreapp3.1\Cryptocop.Software.API.Models.pdb
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\Cryptocop.Software.API\Cryptocop.Software.API.Services\bin\Debug\netcoreapp3.1\Cryptocop.Software.API.Repositories.pdb
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\Cryptocop.Software.API\Cryptocop.Software.API.Services\obj\Debug\netcoreapp3.1\Cryptocop.Software.API.Services.csproj.CopyComplete
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\Cryptocop.Software.API\Cryptocop.Software.API.Services\obj\Debug\netcoreapp3.1\Cryptocop.Software.API.Services.dll
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\Cryptocop.Software.API\Cryptocop.Software.API.Services\obj\Debug\netcoreapp3.1\Cryptocop.Software.API.Services.pdb
