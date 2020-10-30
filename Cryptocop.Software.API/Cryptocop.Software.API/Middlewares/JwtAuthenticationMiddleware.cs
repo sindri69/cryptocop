@@ -52,7 +52,6 @@ namespace Cryptocop.Software.API.Middlewares
       });
       return builder; 
 
-      //muna ad baeta thessu vid i services 120 min i myndbandi 
     } 
     
   }
