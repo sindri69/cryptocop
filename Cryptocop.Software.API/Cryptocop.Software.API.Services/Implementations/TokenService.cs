@@ -38,8 +38,8 @@ namespace Cryptocop.Software.API.Services.Implementations
                 Subject = new ClaimsIdentity(new []
                 {
                     new Claim("name", user.Email),
-                    new Claim("fullname", user.Name),
-                    new Claim("tokenId", userTokenId.ToString())
+                    new Claim("fullname", user.FullName),
+                    new Claim("tokenId", user.TokenId.ToString())
                 }),
                 Audience = _audience,
                 Issuer = _issuer,

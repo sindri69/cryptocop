@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System;
 
 namespace Cryptocop.Software.API.Models.Entities
@@ -17,6 +18,11 @@ namespace Cryptocop.Software.API.Models.Entities
         public DateTime OrderDate {get; set;}
         public float TotalPrice {get; set;}
 
+        //navigation properties
+
+        public int UserId {get; set;}
+        public User User {get; set;}
+        public List<OrderItem> OrderItems {get; set;}
 
     }
 }

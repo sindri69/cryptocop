@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Cryptocop.Software.API.Repositories.Contexts;
+using System.Reflection;
 
 namespace Cryptocop.Software.API
 {

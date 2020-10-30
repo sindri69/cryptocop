@@ -13,9 +13,7 @@ namespace Cryptocop.Software.API.Controllers
         [Route("", Name = "GetAllAddresses")]
         public IActionResult GetAllAddresses()
         {
-            //error handling
-            //call address service
-            //return ok with addresses?
+            //return Ok(_addressService.GetAllAddresses());
             return Ok();
         }
 

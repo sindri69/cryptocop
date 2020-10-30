@@ -10,13 +10,29 @@ namespace Cryptocop.Software.API.Repositories.Contexts
   
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-      modelBuilder.Entity<Message>()
-        .HasOne(modelBuilder => modelBuilder.userFrom)
-        .WithMany(uint => uint.MessagesSent);
+      modelBuilder.Entity<ShoppingCartItem>()
+        .HasOne(m => m.ShoppingCart)
+        .WithMany(u => u.ShoppingCartItems);
 
-      modelBuilder.Entity<Message>()
-      .hasOne(modelBuilder-> m.UserTo)
-      .WithMany(uint => uint.MessagesRecieved);
+      modelBuilder.Entity<ShoppingCart>()
+        .HasOne(m => m.User)
+        .WithOne(u => u.ShoppingCart);
+      
+      modelBuilder.Entity<Address>()
+        .HasOne(m => m.User)
+        .WithMany(u => u.Addresses);
+      
+      modelBuilder.Entity<PaymentCard>()
+        .HasOne(m => m.User)
+        .WithMany(u => u.PaymentCards);
+      
+      modelBuilder.Entity<Order>()
+        .HasOne(m => m.User)
+        .WithMany(u => u.Orders);
+
+      modelBuilder.Entity<OrderItem>()
+        .HasOne(m => m.Order)
+        .WithMany(u => OrderItems);
     }
 
     //setup dbsets which function as our tables

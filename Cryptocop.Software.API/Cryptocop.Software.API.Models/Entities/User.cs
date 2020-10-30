@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Cryptocop.Software.API.Models.Entities
 {
 
@@ -7,5 +9,13 @@ namespace Cryptocop.Software.API.Models.Entities
     public string FullName {get; set;}
     public string Email {get; set;}
     public string HashedPassword {get; set;}
+
+    //navigation properties
+
+    public List<PaymentCard> PaymentCards {get; set;}
+    public ShoppingCart ShoppingCart {get; set;}
+    public List<Address> Addresses {get; set;}
+    public List<Order> Orders {get; set;}
+
   }
 }
