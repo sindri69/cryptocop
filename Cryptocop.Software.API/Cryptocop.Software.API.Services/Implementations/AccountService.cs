@@ -7,9 +7,16 @@ namespace Cryptocop.Software.API.Services.Implementations
 {
     public class AccountService : IAccountService
     {
+        private readonly IUserRepository _userRepository;
+
+        public AccountService(IUserRepository userRepository)
+        {
+        _userRepository = userRepository;
+        }
+
         public UserDto CreateUser(RegisterInputModel inputModel)
         {
-            throw new System.NotImplementedException();
+            return _userRepository.CreateUser(inputModel);
         }
 
         public UserDto AuthenticateUser(LoginInputModel loginInputModel)

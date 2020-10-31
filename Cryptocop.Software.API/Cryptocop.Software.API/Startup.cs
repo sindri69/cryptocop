@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Cryptocop.Software.API.Middlewares;
 using Cryptocop.Software.API.Services.Interfaces;
 using Cryptocop.Software.API.Services.Implementations;
+using Cryptocop.Software.API.Repositories.Interfaces;
+using Cryptocop.Software.API.Repositories.Implementations;
 
 namespace Cryptocop.Software.API
 {
@@ -48,6 +50,7 @@ namespace Cryptocop.Software.API
             }).AddJwtTokenAuthentication(Configuration);
 
             var jwtConfig = Configuration.GetSection("JwtConfig");
+            //services
             services.AddTransient<ITokenService>((c) =>
                 new TokenService(
                     jwtConfig.GetSection("secret").Value,
@@ -63,6 +66,14 @@ namespace Cryptocop.Software.API
             services.AddTransient<IPaymentService, PaymentService>();
             services.AddTransient<IQueueService, QueueService>();
             services.AddTransient<IShoppingCartService, ShoppingCartService>();
+            //repositories
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IAddressRepository, AddressRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IPaymentRepository, PaymentRepository>();
+            services.AddTransient<IShoppingCartRepository, ShoppingCartRepository>();
+            services.AddTransient<ITokenRepository, TokenRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
