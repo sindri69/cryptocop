@@ -26,7 +26,9 @@ namespace Cryptocop.Software.API.Controllers
 
         public IActionResult Register([FromBody] RegisterInputModel user)
         {
-            
+            Console.WriteLine("1 controller", user.FullName);
+            if (!ModelState.IsValid) { return BadRequest("Model is not properly formatted."); }
+            Console.WriteLine("2 controller", user);
             Console.WriteLine("hello");
             return Ok(_accountService.CreateUser(user));
         }

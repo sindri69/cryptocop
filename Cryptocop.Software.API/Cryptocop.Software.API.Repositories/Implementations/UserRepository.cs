@@ -14,17 +14,20 @@ namespace Cryptocop.Software.API.Repositories.Implementations
         private readonly CryptocopDbContext _dbContext;
         private readonly ITokenRepository _tokenRepository;
 
-    public UserRepository(CryptocopDbContext dbContext, ITokenRepository tokenRepository)
-    {
-      _dbContext = dbContext;
-      _tokenRepository = tokenRepository;
-    }
+        public UserRepository(CryptocopDbContext dbContext, ITokenRepository tokenRepository)
+        {
+        _dbContext = dbContext;
+        _tokenRepository = tokenRepository;
+        }
 
     public UserDto CreateUser(RegisterInputModel inputModel)
         {
             var user = _dbContext.Users.FirstOrDefault(u => u.Email == inputModel.Email);
+            Console.WriteLine(inputModel.Email);
+            Console.WriteLine("user", user.IsEmpty());
             //check if a user with this email exists
             if(user != null) {throw new Exception("A user with this email already exists");}
+            Console.WriteLine(inputModel.Email);
 
             var userEntity = new User
             {

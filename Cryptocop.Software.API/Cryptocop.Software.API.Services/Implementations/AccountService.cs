@@ -2,6 +2,7 @@
 using Cryptocop.Software.API.Services.Interfaces;
 using Cryptocop.Software.API.Models.InputModels;
 using Cryptocop.Software.API.Models.Dtos;
+using System;
 
 namespace Cryptocop.Software.API.Services.Implementations
 {
