@@ -16,12 +16,13 @@ namespace Cryptocop.Software.API.Middlewares
     public static AuthenticationBuilder AddJwtTokenAuthentication(this AuthenticationBuilder builder, IConfiguration config)
     {
       var jwtConfig = config.GetSection("JwtConfig");
-      var secret = jwtConfig.GetValue<string>("secret");
-      var issuer = jwtConfig.GetValue<string>("issuer");
-      var audience = jwtConfig.GetValue<string>("audience");
+      var secret = jwtConfig.GetSection("secret").Value;
+      var issuer = jwtConfig.GetSection("issuer").Value;
+      var audience = jwtConfig.GetSection("audience").Value;
       var key = Encoding.ASCII.GetBytes(secret);
 
-      builder.AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, x => {
+      builder.AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, x => 
+      {
         x.SaveToken = true;
         x.TokenValidationParameters = new TokenValidationParameters
         {
@@ -36,7 +37,7 @@ namespace Cryptocop.Software.API.Middlewares
         {
           OnTokenValidated = async context =>
           {
-            var claim = context.Principal.Claims.FirstOrDefault(c => c.Type == "tokenId").Value;
+            var claim = context.Principal.Claims.FirstOrDefault(c => c.Type == "tokenId")?.Value;
             int.TryParse(claim, out var tokenId);
             var jwtTokenService = context.HttpContext.RequestServices.GetService<IJwtTokenService>();
 

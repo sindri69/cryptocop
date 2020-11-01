@@ -4,6 +4,7 @@ using Cryptocop.Software.API.Models.InputModels;
 using System;
 using Cryptocop.Software.API.Services.Implementations;
 using Cryptocop.Software.API.Services.Interfaces;
+using System.Linq;
 
 namespace Cryptocop.Software.API.Controllers
 {
@@ -13,24 +14,24 @@ namespace Cryptocop.Software.API.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IAccountService _accountService;
+        private readonly ITokenService _tokenService;
 
-    public AccountController(IAccountService accountService)
-    {
-      _accountService = accountService;
-    }
+        public AccountController(IAccountService accountService, ITokenService tokenService)
+        {
+        _accountService = accountService;
+        _tokenService = tokenService;
+        }
 
-    //register
-    [AllowAnonymous]
+        //register
+        [AllowAnonymous]
         [HttpPost]
         [Route("register", Name = "Register")]
 
         public IActionResult Register([FromBody] RegisterInputModel user)
         {
-            Console.WriteLine("1 controller", user.FullName);
             if (!ModelState.IsValid) { return BadRequest("Model is not properly formatted."); }
-            Console.WriteLine("2 controller", user);
-            Console.WriteLine("hello");
-            return Ok(_accountService.CreateUser(user));
+            var returnedUser = _accountService.CreateUser(user);
+            return Ok(_tokenService.GenerateJwtToken(returnedUser));
         }
 
         //signin
@@ -39,20 +40,21 @@ namespace Cryptocop.Software.API.Controllers
         [Route("signin", Name = "SignIn")]
         public IActionResult SignIn([FromBody] LoginInputModel login)
         {
-            //TODO call a authentication service
-            //TODO return valid JWT token
-            return Ok();
+            var user = _accountService.AuthenticateUser(login);
+             if (!ModelState.IsValid) { return BadRequest("Model is not properly formatted."); }
+            if (user == null) { return Unauthorized(); }
+            return Ok(_tokenService.GenerateJwtToken(user));
         }
         //signout
         [HttpGet]
         [Route("signout", Name = "SignOut")]
         public IActionResult SignOut()
         {
-            //TODO retrieve token id from claim and blacklist token
+            int.TryParse(User.Claims.FirstOrDefault(c => c.Type == "tokenId").Value, out var tokenId);
+            _accountService.Logout(tokenId);
             return NoContent();
         }
 
-        //hann er med getuserinfo route
 
     }
 }

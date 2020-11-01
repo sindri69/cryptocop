@@ -13,6 +13,8 @@ using Cryptocop.Software.API.Services.Interfaces;
 using Cryptocop.Software.API.Services.Implementations;
 using Cryptocop.Software.API.Repositories.Interfaces;
 using Cryptocop.Software.API.Repositories.Implementations;
+using AutoMapper;
+using Cryptocop.Software.API.Mappings;
 
 namespace Cryptocop.Software.API
 {
@@ -28,6 +30,10 @@ namespace Cryptocop.Software.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var mappingProfile = new MapperConfiguration(mc => {
+                mc.AddProfile(new MappingProfile());
+            });
+
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );

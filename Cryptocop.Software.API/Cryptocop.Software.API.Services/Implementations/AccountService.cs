@@ -9,25 +9,27 @@ namespace Cryptocop.Software.API.Services.Implementations
     public class AccountService : IAccountService
     {
         private readonly IUserRepository _userRepository;
+        private ITokenRepository _tokenRepository;
 
-        public AccountService(IUserRepository userRepository)
-        {
-        _userRepository = userRepository;
-        }
+    public AccountService(IUserRepository userRepository, ITokenRepository tokenRepository)
+    {
+      _userRepository = userRepository;
+      _tokenRepository = tokenRepository;
+    }
 
-        public UserDto CreateUser(RegisterInputModel inputModel)
+    public UserDto CreateUser(RegisterInputModel inputModel)
         {
             return _userRepository.CreateUser(inputModel);
         }
 
         public UserDto AuthenticateUser(LoginInputModel loginInputModel)
         {
-            throw new System.NotImplementedException();
+            return _userRepository.AuthenticateUser(loginInputModel);
         }
 
         public void Logout(int tokenId)
         {
-            throw new System.NotImplementedException();
+            _tokenRepository.VoidToken(tokenId);
         }
     }
 }

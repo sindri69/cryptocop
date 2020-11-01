@@ -23,12 +23,9 @@ namespace Cryptocop.Software.API.Repositories.Implementations
     public UserDto CreateUser(RegisterInputModel inputModel)
         {
             var user = _dbContext.Users.FirstOrDefault(u => u.Email == inputModel.Email);
-            Console.WriteLine(inputModel.Email);
-            Console.WriteLine("user", user.IsEmpty());
+
             //check if a user with this email exists
             if(user != null) {throw new Exception("A user with this email already exists");}
-            Console.WriteLine(inputModel.Email);
-
             var userEntity = new User
             {
                 //id = id??
@@ -46,6 +43,7 @@ namespace Cryptocop.Software.API.Repositories.Implementations
                 FullName = userEntity.FullName,
                 Email = userEntity.Email,
                 TokenId = _tokenRepository.CreateNewToken().Id
+                
             };
             
 
@@ -56,8 +54,8 @@ namespace Cryptocop.Software.API.Repositories.Implementations
             var user = _dbContext.Users.FirstOrDefault(u =>
                 u.Email == loginInputModel.Email &&
                 u.HashedPassword == HashingHelper.HashPassword(loginInputModel.Password));
-            if (user == null) { return null; }
-            //throw some exception
+            if (user == null) { throw new Exception("Login info incorrect!"); }
+
 
             var token = _tokenRepository.CreateNewToken();
 
