@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Cryptocop.Software.API.Models.InputModels;
 using Cryptocop.Software.API.Services.Interfaces;
+using System.Linq;
 
 namespace Cryptocop.Software.API.Controllers
 {
@@ -21,17 +22,19 @@ namespace Cryptocop.Software.API.Controllers
         [Route("", Name = "GetAllAddresses")]
         public IActionResult GetAllAddresses()
         {
-            return Ok(_addressService.GetAllAddresses());
+            //get email from claim?
+            //return Ok(_addressService.GetAllAddresses(email));
+            return Ok();
         }
 
         [HttpPost]
         [Route("", Name = "CreateAddress")]
-        public IActionResult CreateAddress([FromBody] AddressInputModel Address)
+        public IActionResult CreateAddress([FromBody] AddressInputModel addressInput)
         {
-            //error handling
-            //ca;; address service
-            //what do i return
+            var email = User.Identity.Name;
+            _addressService.AddAddress(email, addressInput);
             return Ok();
+            
         }
 
         [HttpDelete]
@@ -42,6 +45,8 @@ namespace Cryptocop.Software.API.Controllers
             //call address service and do stuff
             return NoContent();
         }
+
+
         
     }
 }

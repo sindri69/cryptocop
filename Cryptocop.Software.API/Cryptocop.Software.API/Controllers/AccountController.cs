@@ -29,6 +29,12 @@ namespace Cryptocop.Software.API.Controllers
 
         public IActionResult Register([FromBody] RegisterInputModel user)
         {
+                        var claims = User.Claims.Select(c => new
+            {
+                Type = c.Type,
+                Value = c.Value
+            });
+            Console.WriteLine(claims);
             if (!ModelState.IsValid) { return BadRequest("Model is not properly formatted."); }
             var returnedUser = _accountService.CreateUser(user);
             return Ok(_tokenService.GenerateJwtToken(returnedUser));

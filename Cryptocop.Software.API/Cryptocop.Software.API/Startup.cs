@@ -34,6 +34,9 @@ namespace Cryptocop.Software.API
                 mc.AddProfile(new MappingProfile());
             });
 
+            var mapper = mappingProfile.CreateMapper();
+            services.AddSingleton(mapper);
+
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );

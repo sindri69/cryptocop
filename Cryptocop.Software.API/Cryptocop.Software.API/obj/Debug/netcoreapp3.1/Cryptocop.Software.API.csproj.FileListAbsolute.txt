@@ -147,3 +147,4 @@ C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\Cryptoc
 C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\Cryptocop.Software.API\Cryptocop.Software.API\obj\Debug\netcoreapp3.1\Cryptocop.Software.API.dll
 C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\Cryptocop.Software.API\Cryptocop.Software.API\obj\Debug\netcoreapp3.1\Cryptocop.Software.API.pdb
 C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\Cryptocop.Software.API\Cryptocop.Software.API\obj\Debug\netcoreapp3.1\Cryptocop.Software.API.genruntimeconfig.cache
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\Cryptocop.Software.API\Cryptocop.Software.API\bin\Debug\netcoreapp3.1\AutoMapper.dll
