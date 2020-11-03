@@ -32,7 +32,7 @@ namespace Cryptocop.Software.API.Services.Implementations
 
         public void DeleteAddress(string email, int addressId)
         {
-            throw new System.NotImplementedException();
+            _addressRepository.DeleteAddress(email, addressId);
         }
     }
 }

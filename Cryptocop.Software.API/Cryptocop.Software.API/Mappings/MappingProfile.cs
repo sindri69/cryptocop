@@ -1,6 +1,7 @@
 using System;
 using AutoMapper;
-
+using Cryptocop.Software.API.Models.Dtos;
+using Cryptocop.Software.API.Models.Entities;
 
 namespace Cryptocop.Software.API.Mappings
 {
@@ -9,7 +10,7 @@ namespace Cryptocop.Software.API.Mappings
         public MappingProfile()
         {
 
-            // CreateMap<NewsItem, NewsItemDto>();
+            CreateMap<Address, AddressDto>();
             // CreateMap<NewsItem, NewsItemDetailDto>();
             // CreateMap<NewsItemInputModel, NewsItem>()
             //     .ForMember(src => src.CreatedDate, opt => opt.MapFrom(src => DateTime.Now))

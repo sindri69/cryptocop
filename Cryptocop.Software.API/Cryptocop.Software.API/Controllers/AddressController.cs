@@ -22,18 +22,20 @@ namespace Cryptocop.Software.API.Controllers
         [Route("", Name = "GetAllAddresses")]
         public IActionResult GetAllAddresses()
         {
-            //get email from claim?
-            //return Ok(_addressService.GetAllAddresses(email));
-            return Ok();
+            var email = User.Identity.Name;
+            return Ok(_addressService.GetAllAddresses(email));
+           
         }
 
         [HttpPost]
         [Route("", Name = "CreateAddress")]
         public IActionResult CreateAddress([FromBody] AddressInputModel addressInput)
         {
+             if (!ModelState.IsValid) { return BadRequest("Model is not properly formatted."); }
             var email = User.Identity.Name;
             _addressService.AddAddress(email, addressInput);
-            return Ok();
+    
+            return Ok("Address was successfully added");
             
         }
 
@@ -41,8 +43,8 @@ namespace Cryptocop.Software.API.Controllers
         [Route("{id:int}", Name = "DeleteAddress")]
         public IActionResult DeleteAddress(int id)
         {
-            //error handling
-            //call address service and do stuff
+            var email = User.Identity.Name;
+            _addressService.DeleteAddress(email, id);
             return NoContent();
         }
 

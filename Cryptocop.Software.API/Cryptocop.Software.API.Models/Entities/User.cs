@@ -13,6 +13,7 @@ namespace Cryptocop.Software.API.Models.Entities
     //navigation properties
 
     public List<PaymentCard> PaymentCards {get; set;}
+    
     public ShoppingCart ShoppingCart {get; set;}
     public List<Address> Addresses {get; set;}
     public List<Order> Orders {get; set;}
