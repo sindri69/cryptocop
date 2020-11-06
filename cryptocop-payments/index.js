@@ -1,5 +1,5 @@
-const myDB = require('./data/db')
 const amqp = require('amqplib/callback_api');
+const valid = require("card-validator");
 
 
 const messageBrokerInfo = {
@@ -25,8 +25,8 @@ const configureMessageBroker = channel => {
     const { exchanges, queues, routingKeys } = messageBrokerInfo;
 
     channel.assertExchange(exchanges.order, 'direct', { durable: true });
-    channel.assertQueue(queues.OrderQueue, { durable: true });
-    channel.bindQueue(queues.OrderQueue, exchanges.order, routingKeys.createOrder);
+    channel.assertQueue(queues.PaymentQueue, { durable: true });
+    channel.bindQueue(queues.PaymentQueue, exchanges.order, routingKeys.validateCard);
 }
 
 const createChannel = connection => new Promise((resolve, reject) => {
@@ -41,42 +41,25 @@ const createChannel = connection => new Promise((resolve, reject) => {
     const connection = await createMessageBrokerConnection();
     const channel = await createChannel(connection);
    
-    const { OrderQueue } = messageBrokerInfo.queues;
+    const { PaymentQueue } = messageBrokerInfo.queues;
 
-    channel.consume(OrderQueue, async (data) =>{
-        console.log("myDB", myDB)
-        console.log("YOLO")
+    channel.consume(PaymentQueue, async (data) =>{
 
         //read from buffer
         var JSONData = JSON.parse(data.content.toString())
+        var isValid = false;
+ 
+        var numberValidation = valid.number(JSONData);
         
-        //create a new order
-        email = JSONData.email
-        orderDate = Date.now()
-        var totalPrice = 0
-        for(i = 0; i < JSONData.items.length; i++) {
-            var tmp = JSONData.items[i].quantity * JSONData.items[i].unitPrice
-            totalPrice += tmp
+        if (!numberValidation.isPotentiallyValid) {
+        renderInvalidCardNumber();
+        console.log("The card number is invalid")
         }
         
-        orderResult = await myDB.Order.create({
-            customerEmail: email,
-            totalPrice: totalPrice,
-            orderDate: orderDate
-        })
-
-        //create order items
-        for(i = 0; i < JSONData.items.length; i++) {
-            await myDB.OrderItem.create({
-                description: JSONData.items[i].description,
-                quantity: JSONData.items[i].quantity,
-                unitPrice: JSONData.items[i].unitPrice,
-                rowPrice: JSONData.items[i].quantity * JSONData.items[i].unitPrice,
-                orderId: orderResult._id
-            })
+        if (numberValidation.card) {
+        console.log("The card is a valid ", numberValidation.card.type, " card");
+        isValid = true;
         }
-     
 
-        console.log("order_service:", data.content.toString('utf-8'))
     }, { noAck: true });
 })().catch(e => console.error(e));

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Cryptocop.Software.API.Models.InputModels;
+using Cryptocop.Software.API.Services.Implementations;
+using Cryptocop.Software.API.Services.Interfaces;
 
 namespace Cryptocop.Software.API.Controllers
 {
@@ -9,23 +11,28 @@ namespace Cryptocop.Software.API.Controllers
     [ApiController]
     public class PaymentController : ControllerBase
     {
+        private readonly IPaymentService _paymentService;
+
+        public PaymentController(IPaymentService paymentService)
+        {
+        _paymentService = paymentService;
+        }
+
         [HttpGet]
         [Route("", Name = "GetAllPaymentCards")]
         public IActionResult GetAllPaymentCards()
         {
-            //error handling
-            //call paymentService
-            //return something
-            return Ok();
+            var email = User.Identity.Name;
+            return Ok(_paymentService.GetStoredPaymentCards(email));
         }
 
         [HttpPost]
         [Route("", Name = "CreatePaymentCard")]
         public IActionResult CreatePaymentCard([FromBody] PaymentCardInputModel paymentCard)
         {
-            //error handling
-            //call paymentcard service
-            //return something
+            if (!ModelState.IsValid) { return BadRequest("Model is not properly formatted."); }
+            var email = User.Identity.Name;
+            _paymentService.AddPaymentCard(email, paymentCard);
             return Ok();
         }
     }

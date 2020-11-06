@@ -2,6 +2,7 @@ using System;
 using AutoMapper;
 using Cryptocop.Software.API.Models.Dtos;
 using Cryptocop.Software.API.Models.Entities;
+using Cryptocop.Software.API.Repositories.Helpers;
 
 namespace Cryptocop.Software.API.Mappings
 {
@@ -11,7 +12,8 @@ namespace Cryptocop.Software.API.Mappings
         {
 
             CreateMap<Address, AddressDto>();
-            // CreateMap<NewsItem, NewsItemDetailDto>();
+            CreateMap<PaymentCard, PaymentCardDto>()
+                .ForMember(src => src.CardNumber, opt => opt.MapFrom(src => PaymentCardHelper.MaskPaymentCard(src.CardNumber)));
             // CreateMap<NewsItemInputModel, NewsItem>()
             //     .ForMember(src => src.CreatedDate, opt => opt.MapFrom(src => DateTime.Now))
             //     .ForMember(src => src.ModifiedDate, opt => opt.MapFrom(src => DateTime.Now))
