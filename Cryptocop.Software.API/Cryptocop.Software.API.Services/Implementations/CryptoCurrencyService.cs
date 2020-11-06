@@ -5,14 +5,27 @@ using System.Threading.Tasks;
 using Cryptocop.Software.API.Services.Helpers;
 using Cryptocop.Software.API.Services.Interfaces;
 using Cryptocop.Software.API.Models.Dtos;
+using System;
+using System.Net.Http.Headers;
 
 namespace Cryptocop.Software.API.Services.Implementations
 {
     public class CryptoCurrencyService : ICryptoCurrencyService
     {
-        public Task<IEnumerable<CryptoCurrencyDto>> GetAvailableCryptocurrencies()
+        public async Task<IEnumerable<CryptoCurrencyDto>> GetAvailableCryptocurrencies()
         {
-            throw new System.NotImplementedException();
+            
+            var path = "https://data.messari.io/api/v2/assets?fields=id,symbol,name,slug,profile/general/overview/project_details,metrics/market_data/price_usd%22";
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            HttpResponseMessage response = await client.GetAsync(path);
+            var res = await HttpResponseMessageExtensions.DeserializeJsonToList<CryptoCurrencyDto>(response, true);
+
+            Console.WriteLine(res);
+
+            return res;
         }
     }
 }

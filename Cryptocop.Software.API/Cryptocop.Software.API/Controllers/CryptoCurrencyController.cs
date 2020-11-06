@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Cryptocop.Software.API.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Cryptocop.Software.API.Models.InputModels;
+
 
 namespace Cryptocop.Software.API.Controllers
 {
@@ -9,13 +10,17 @@ namespace Cryptocop.Software.API.Controllers
     [Route("api/cryptocurrencies")]
     public class CryptoCurrencyController : ControllerBase
     {
-        // TODO: Setup routes
+        private readonly ICryptoCurrencyService _cryptoCurrencyService;
+
+        public CryptoCurrencyController(ICryptoCurrencyService cryptoCurrencyService)
+        {
+        _cryptoCurrencyService = cryptoCurrencyService;
+        }
+
         [HttpGet]
         [Route("", Name = "GetAllCryptoCurrencies")]
         public IActionResult GetAllCryptoCurrencies(){
-            //todo call service
-            //return Cryptocurrencies
-            return Ok();
+            return Ok(_cryptoCurrencyService.GetAvailableCryptocurrencies());
         }
     }
 }
