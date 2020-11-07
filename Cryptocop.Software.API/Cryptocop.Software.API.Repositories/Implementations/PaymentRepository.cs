@@ -7,6 +7,7 @@ using Cryptocop.Software.API.Repositories.Contexts;
 using AutoMapper;
 using System.Linq;
 using Cryptocop.Software.API.Models.Entities;
+using System;
 
 namespace Cryptocop.Software.API.Repositories.Implementations
 {
@@ -41,8 +42,9 @@ namespace Cryptocop.Software.API.Repositories.Implementations
 
         public IEnumerable<PaymentCardDto> GetStoredPaymentCards(string email)
         {
-            var userId = _dbContext.Users.FirstOrDefault(u => u.Email == email).Id;
-            var paymentCards = _dbContext.PaymentCards.Where(p => p.UserId == userId);
+            var user = _dbContext.Users.FirstOrDefault(u => u.Email == email);
+            if(user == null) {throw new Exception("Something went wrong with the database");}
+            var paymentCards = _dbContext.PaymentCards.Where(p => p.UserId == user.Id);
             //throw error if there are no addresses?
             //skilar empty enumerable if thetta er tomt
             return _mapper.Map<IEnumerable<PaymentCardDto>>(paymentCards);

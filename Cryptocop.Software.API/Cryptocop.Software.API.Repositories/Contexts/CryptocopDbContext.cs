@@ -43,7 +43,7 @@ namespace Cryptocop.Software.API.Repositories.Contexts
     public DbSet<OrderItem> OrderItems {get; set;}
     public DbSet<PaymentCard> PaymentCards {get; set;}
     public DbSet<ShoppingCartItem> ShoppingCartItems {get; set;}
-    
+    public DbSet<ShoppingCart> ShoppingCart {get; set;}
   }
 
 }

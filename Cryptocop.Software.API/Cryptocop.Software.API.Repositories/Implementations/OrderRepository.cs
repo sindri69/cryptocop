@@ -31,6 +31,20 @@ namespace Cryptocop.Software.API.Repositories.Implementations
 
         public OrderDto CreateNewOrder(string email, OrderInputModel order)
         {
+            //retrieve information from user
+            var user = _dbContext.Users.FirstOrDefault(u => u.Email == email);
+            if(user == null) {throw new Exception("Something went wrong with the database");}
+            
+            //retrieve information from address
+            var addresses = _dbContext.Addresses.Where(i => i.UserId == user.Id);
+            //throw some error
+
+            //retrive information from paymentcard
+            var paymentCards = _dbContext.PaymentCards.Where(p => p.UserId == user.Id);
+            //throw some error
+
+            //create new order with credit card masked
+            //return order but with credit card unmasked
             throw new NotImplementedException();
         }
     }

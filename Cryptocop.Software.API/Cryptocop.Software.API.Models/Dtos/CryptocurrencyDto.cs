@@ -1,4 +1,5 @@
-
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Cryptocop.Software.API.Models.Dtos
 {
@@ -6,7 +7,7 @@ namespace Cryptocop.Software.API.Models.Dtos
   //í large assignment 1 erfa classarnir hypermediamodel
     public class CryptoCurrencyDto
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public string Symbol { get; set; }
 
@@ -14,8 +15,9 @@ namespace Cryptocop.Software.API.Models.Dtos
 
         public string Slug { get; set; }
 
+        [JsonProperty("price_usd")]
         public float PriceInUsd {get; set;}
-
+        [JsonProperty("project_details")]
         public string ProjectDetails {get; set;}
 
     }

@@ -15,7 +15,7 @@ namespace Cryptocop.Software.API.Services.Implementations
         public async Task<IEnumerable<CryptoCurrencyDto>> GetAvailableCryptocurrencies()
         {
             
-            var path = "https://data.messari.io/api/v2/assets?fields=id,symbol,name,slug,profile/general/overview/project_details,metrics/market_data/price_usd%22";
+            var path = "https://data.messari.io/api/v2/assets?fields=id,symbol,name,slug,profile/general/overview/project_details,metrics/market_data/price_usd";
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -23,8 +23,8 @@ namespace Cryptocop.Software.API.Services.Implementations
             HttpResponseMessage response = await client.GetAsync(path);
             var res = await HttpResponseMessageExtensions.DeserializeJsonToList<CryptoCurrencyDto>(response, true);
 
-
-            return res;
+            //filter by the currencies that are asked for in the project description
+            return res.Where(r => r.Symbol == "BTC" || r.Symbol == "ETH" || r.Symbol == "USDT" || r.Symbol == "XMR");
         }
     }
 }
