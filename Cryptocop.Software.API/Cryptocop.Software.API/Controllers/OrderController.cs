@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Cryptocop.Software.API.Models.InputModels;
+using Cryptocop.Software.API.Services.Interfaces;
 
 namespace Cryptocop.Software.API.Controllers
 {
@@ -9,23 +10,28 @@ namespace Cryptocop.Software.API.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
+        private readonly IOrderService _orderService;
+
+        public OrderController(IOrderService orderService)
+        {
+        _orderService = orderService;
+        }
+
         [HttpGet]
         [Route("", Name = "GetAllOrders")]
         public IActionResult GetAllOrders()
         {
-            //error handling
-            //call order service
-            //return a list of all orders
-            return Ok();
+            var email = User.Identity.Name;
+            return Ok(_orderService.GetOrders(email));
         }
 
         [HttpPost]
         [Route("", Name = "CreateOrder")]
         public IActionResult CreateOrder([FromBody] OrderInputModel order)
         {
-            //error handling 
-            //call service layer
-            //return something
+            var email = User.Identity.Name;
+            _orderService.CreateNewOrder(email, order);
+            //return created
             return Ok();
         }
     }

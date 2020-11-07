@@ -23,7 +23,6 @@ namespace Cryptocop.Software.API.Services.Implementations
             HttpResponseMessage response = await client.GetAsync(path);
             var res = await HttpResponseMessageExtensions.DeserializeJsonToList<CryptoCurrencyDto>(response, true);
 
-            Console.WriteLine(res);
 
             return res;
         }

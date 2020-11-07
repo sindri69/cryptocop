@@ -3,8 +3,6 @@ using System.Collections.Generic;
 
 namespace Cryptocop.Software.API.Models.Dtos
 {
-  //á þessi class að erfa ehv?
-  //í large assignment 1 erfa classarnir hypermediamodel
     public class OrderDto
     {
         public int Id { get; set; }
