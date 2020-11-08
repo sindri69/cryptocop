@@ -25,7 +25,8 @@ namespace Cryptocop.Software.API.Controllers
             if (!ModelState.IsValid) { return BadRequest("Model is not properly formatted."); }
             var email = User.Identity.Name;
             //return created?
-            return Ok(_shoppingCartService.AddCartItem(email, shoppingCartItem));
+            _shoppingCartService.AddCartItem(email, shoppingCartItem);
+            return Ok();
         }
 
         [HttpDelete]
@@ -49,10 +50,11 @@ namespace Cryptocop.Software.API.Controllers
         }
 
         [HttpDelete]
-        [Route("", Name = "DeleteShoppingCart")]
-        public IActionResult DeleteShoppingCart()
+        [Route("", Name = "ClearShoppingCart")]
+        public IActionResult ClearShoppingCart()
         {
-            //call shopping cart service
+            var email = User.Identity.Name;
+            _shoppingCartService.ClearCart(email);
             return NoContent();
         }
     }

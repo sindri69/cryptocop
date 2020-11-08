@@ -37,11 +37,23 @@ namespace Cryptocop.Software.API.Repositories.Implementations
 
         public void AddCartItem(string email, ShoppingCartItemInputModel shoppingCartItem, float priceInUsd)
         {
+            Console.WriteLine("Start of add cart item");
             var user = _dbContext.Users.FirstOrDefault(u => u.Email == email);
             if(user == null) {throw new Exception("something went wrong with the database (userid)");}
 
             var shoppingCart = _dbContext.ShoppingCart.FirstOrDefault(s => s.UserId == user.Id);
-            if(user == null) {throw new Exception("something went wrong with the database (shoppingcart)");}
+            Console.WriteLine("before making shopping cart");
+            if(shoppingCart == null) 
+            {
+                shoppingCart = new ShoppingCart
+                {
+                    UserId = user.Id
+                };
+                _dbContext.ShoppingCart.Add(shoppingCart);
+                _dbContext.SaveChanges();
+            }
+            Console.WriteLine("after making shopping cart");
+            Console.WriteLine(shoppingCartItem);
             
             var shoppingCartItemEntity = new ShoppingCartItem
             {
@@ -50,8 +62,10 @@ namespace Cryptocop.Software.API.Repositories.Implementations
                 UnitPrice = priceInUsd,
                 ShoppingCartId = shoppingCart.Id
             };
+            Console.WriteLine("after making shoppingcartitementity");
             _dbContext.ShoppingCartItems.Add(shoppingCartItemEntity);
             _dbContext.SaveChanges();
+            Console.WriteLine("end");
 
         }
 
