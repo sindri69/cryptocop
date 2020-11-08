@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Cryptocop.Software.API.Models.InputModels;
+using Cryptocop.Software.API.Services.Interfaces;
 
 namespace Cryptocop.Software.API.Controllers
 {
@@ -9,11 +10,17 @@ namespace Cryptocop.Software.API.Controllers
     [ApiController]
     public class ExchangeController : ControllerBase
     {
-        // TODO: Setup routes
+        private readonly IExchangeService _exchangeService;
+
+        public ExchangeController(IExchangeService exchangeService)
+        {
+        _exchangeService = exchangeService;
+        }
+
         [HttpGet]
         [Route("")]
-        public IActionResult GetAllExchanges() {
-            return Ok();
+        public IActionResult GetAllExchanges([FromQuery(Name = "pageNumber")] int pageNumber) {
+            return Ok(_exchangeService.GetExchanges(pageNumber));
         }
     }
 }

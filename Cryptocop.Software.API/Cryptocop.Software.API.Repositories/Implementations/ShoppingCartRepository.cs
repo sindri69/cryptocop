@@ -37,12 +37,15 @@ namespace Cryptocop.Software.API.Repositories.Implementations
 
         public void AddCartItem(string email, ShoppingCartItemInputModel shoppingCartItem, float priceInUsd)
         {
-            Console.WriteLine("Start of add cart item");
+            //Console.WriteLine("start of add");
+            //Console.WriteLine(email);
             var user = _dbContext.Users.FirstOrDefault(u => u.Email == email);
+            Console.WriteLine("before user null check");
             if(user == null) {throw new Exception("something went wrong with the database (userid)");}
 
+            Console.WriteLine("before getting shopping cart");
             var shoppingCart = _dbContext.ShoppingCart.FirstOrDefault(s => s.UserId == user.Id);
-            Console.WriteLine("before making shopping cart");
+            Console.WriteLine("after getting shopping cart");
             if(shoppingCart == null) 
             {
                 shoppingCart = new ShoppingCart
@@ -51,10 +54,10 @@ namespace Cryptocop.Software.API.Repositories.Implementations
                 };
                 _dbContext.ShoppingCart.Add(shoppingCart);
                 _dbContext.SaveChanges();
+                Console.WriteLine("inside null check");
             }
-            Console.WriteLine("after making shopping cart");
-            Console.WriteLine(shoppingCartItem);
-            
+            Console.WriteLine("after null check");
+        
             var shoppingCartItemEntity = new ShoppingCartItem
             {
                 ProductIdentifier = shoppingCartItem.ProductIdentifier,
@@ -62,10 +65,10 @@ namespace Cryptocop.Software.API.Repositories.Implementations
                 UnitPrice = priceInUsd,
                 ShoppingCartId = shoppingCart.Id
             };
-            Console.WriteLine("after making shoppingcartitementity");
+
             _dbContext.ShoppingCartItems.Add(shoppingCartItemEntity);
             _dbContext.SaveChanges();
-            Console.WriteLine("end");
+            Console.WriteLine("end of add");
 
         }
 
@@ -78,6 +81,7 @@ namespace Cryptocop.Software.API.Repositories.Implementations
             if(user == null) {throw new Exception("something went wrong with the database (shoppingcart)");}
 
             var removedItem = _dbContext.ShoppingCartItems.FirstOrDefault(s => s.Id == id && s.ShoppingCartId == shoppingCart.Id);
+            if(removedItem == null) {throw new Exception("There is not item with this id in your cart");}
             //throw some kind of exception?
 
             _dbContext.ShoppingCartItems.Remove(removedItem);
@@ -88,14 +92,30 @@ namespace Cryptocop.Software.API.Repositories.Implementations
         {
             var user = _dbContext.Users.FirstOrDefault(u => u.Email == email);
             if(user == null) {throw new Exception("something went wrong with the database (userid)");}
-            throw new System.NotImplementedException();
+
+            var shoppingCart = _dbContext.ShoppingCart.FirstOrDefault(s => s.UserId == user.Id);
+            if(user == null) {throw new Exception("This user has no shopping cart");}
+
+            var updatedItem = _dbContext.ShoppingCartItems.FirstOrDefault(s => s.Id == id && s.ShoppingCartId == shoppingCart.Id);
+            if(updatedItem == null) {throw new Exception("There is not item with this id in your cart");}
+            updatedItem.Quantity = quantity;
+            
+            _dbContext.ShoppingCartItems.Update(updatedItem);
+            _dbContext.SaveChanges();
         }
 
         public void ClearCart(string email)
         {
             var user = _dbContext.Users.FirstOrDefault(u => u.Email == email);
             if(user == null) {throw new Exception("something went wrong with the database (userid)");}
-            throw new System.NotImplementedException();
+            
+            var shoppingCart = _dbContext.ShoppingCart.FirstOrDefault(s => s.UserId == user.Id);
+            if(user == null) {throw new Exception("This user has no shopping cart");}
+
+            var shoppingCartItems = _dbContext.ShoppingCartItems.Where(s => s.ShoppingCartId == shoppingCart.Id);
+
+            _dbContext.ShoppingCartItems.RemoveRange(shoppingCartItems);
+            _dbContext.SaveChanges();
         }
 
         public void DeleteCart(string email)

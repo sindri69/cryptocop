@@ -9,7 +9,7 @@ namespace Cryptocop.Software.API.Models.InputModels
 
         [Required]
         [Range(0.01, float.MaxValue)]
-        public float? Quantity { get; set; }
+        public float Quantity { get; set; }
 
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Cryptocop.Software.API.Models.InputModels;
 using Cryptocop.Software.API.Services.Interfaces;
+using System.Threading.Tasks;
 
 namespace Cryptocop.Software.API.Controllers
 {
@@ -20,12 +21,12 @@ namespace Cryptocop.Software.API.Controllers
         
         [HttpPost]
         [Route("", Name = "CreateShoppingCartItem")]
-        public IActionResult CreateShoppingCartItem([FromBody] ShoppingCartItemInputModel shoppingCartItem)
+        public async Task<IActionResult> CreateShoppingCartItem([FromBody] ShoppingCartItemInputModel shoppingCartItem)
         {
             if (!ModelState.IsValid) { return BadRequest("Model is not properly formatted."); }
             var email = User.Identity.Name;
             //return created?
-            _shoppingCartService.AddCartItem(email, shoppingCartItem);
+            await _shoppingCartService.AddCartItem(email, shoppingCartItem);
             return Ok();
         }
 
@@ -45,7 +46,7 @@ namespace Cryptocop.Software.API.Controllers
         {
             if (!ModelState.IsValid) { return BadRequest("Model is not properly formatted."); }
             var email = User.Identity.Name;
-            //_shoppingCartService.UpdateCartItemQuantity(email, id, shoppingCartItem.Quantity);
+            _shoppingCartService.UpdateCartItemQuantity(email, id, shoppingCartItem.Quantity);
             return Ok();
         }
 

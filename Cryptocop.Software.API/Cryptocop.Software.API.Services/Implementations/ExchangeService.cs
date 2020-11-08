@@ -4,14 +4,31 @@ using Cryptocop.Software.API.Models;
 using Cryptocop.Software.API.Services.Helpers;
 using Cryptocop.Software.API.Services.Interfaces;
 using Cryptocop.Software.API.Models.Dtos;
+using System;
+using System.Net.Http.Headers;
+using System.Collections.Generic;
 
 namespace Cryptocop.Software.API.Services.Implementations
 {
     public class ExchangeService : IExchangeService
     {
-        public Task<Envelope<ExchangeDto>> GetExchanges(int pageNumber = 1)
+        public async Task<Envelope<ExchangeDto>> GetExchanges(int pageNumber = 1)
         {
-            throw new System.NotImplementedException();
+            if(pageNumber < 1) {throw new Exception("pageNumber should not be lower than 1");}
+            var path = "https://messari.io/market?pagenumber=" + pageNumber + "?";
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            HttpResponseMessage response = await client.GetAsync(path);
+            var res = await HttpResponseMessageExtensions.DeserializeJsonToList<ExchangeDto>(response, true);
+
+            var envelope = new Envelope<ExchangeDto>
+            {
+                Items = new List<ExchangeDto>(res),
+                
+            };
+            return envelope;
         }
     }
 }
