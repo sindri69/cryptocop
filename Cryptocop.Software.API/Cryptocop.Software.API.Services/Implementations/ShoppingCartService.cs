@@ -30,17 +30,19 @@ namespace Cryptocop.Software.API.Services.Implementations
 
         public void RemoveCartItem(string email, int id)
         {
-            throw new System.NotImplementedException();
+            _shoppingCartRepository.RemoveCartItem(email, id);
         }
 
         public void UpdateCartItemQuantity(string email, int id, float quantity)
         {
-            throw new System.NotImplementedException();
+            _shoppingCartRepository.UpdateCartItemQuantity(email, id, quantity);
         }
 
         public void ClearCart(string email)
         {
-            throw new System.NotImplementedException();
+            _shoppingCartRepository.ClearCart(email);
         }
+
+        //vantar kannski delete cart fall
     }
 }

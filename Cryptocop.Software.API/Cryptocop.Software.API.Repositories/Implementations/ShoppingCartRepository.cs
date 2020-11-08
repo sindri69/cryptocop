@@ -41,7 +41,7 @@ namespace Cryptocop.Software.API.Repositories.Implementations
 
         public void RemoveCartItem(string email, int id)
         {
-            throw new System.NotImplementedException();
+            var user = _dbContext.Users.FirstOrDefault(u => u.Email == email);
         }
 
         public void UpdateCartItemQuantity(string email, int id, float quantity)

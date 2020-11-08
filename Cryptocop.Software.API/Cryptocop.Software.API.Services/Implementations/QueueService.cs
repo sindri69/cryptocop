@@ -12,7 +12,20 @@ namespace Cryptocop.Software.API.Services.Implementations
     {
         public void PublishMessage(string routingKey, object body)
         {
-            throw new NotImplementedException();
+            
+            /*var factory = new ConnectionFactory() { HostName = "localhost" };
+            using(var connection = factory.CreateConnection())
+            using(var channel = connection.CreateModel())
+            {
+                channel.ExchangeDeclare(exchange: "logs", type: ExchangeType.Fanout);
+
+                var body2 = Encoding.UTF8.GetBytes(body);
+                channel.BasicPublish(exchange: "order",
+                                    routingKey: routingKey,
+                                    basicProperties: null,
+                                    body: body2);
+                
+            }*/
         }
 
         public void Dispose()

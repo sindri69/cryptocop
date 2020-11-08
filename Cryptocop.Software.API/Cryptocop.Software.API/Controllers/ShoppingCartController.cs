@@ -17,7 +17,7 @@ namespace Cryptocop.Software.API.Controllers
         _shoppingCartService = shoppingCartService;
         }
 
-        // TODO: Setup routes
+        
         [HttpPost]
         [Route("", Name = "CreateShoppingCartItem")]
         public IActionResult CreateShoppingCartItem([FromBody] ShoppingCartItemInputModel shoppingCartItem)
