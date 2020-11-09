@@ -22,6 +22,7 @@ namespace Cryptocop.Software.API.Controllers
         public IActionResult GetAllOrders()
         {
             var email = User.Identity.Name;
+            //.Result
             return Ok(_orderService.GetOrders(email));
         }
 

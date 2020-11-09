@@ -20,7 +20,7 @@ namespace Cryptocop.Software.API.Controllers
         [HttpGet]
         [Route("")]
         public IActionResult GetAllExchanges([FromQuery(Name = "pageNumber")] int pageNumber) {
-            return Ok(_exchangeService.GetExchanges(pageNumber));
+            return Ok(_exchangeService.GetExchanges(pageNumber).Result);
         }
     }
 }
