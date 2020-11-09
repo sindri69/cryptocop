@@ -6,6 +6,8 @@ using Cryptocop.Software.API.Models.InputModels;
 using Cryptocop.Software.API.Repositories.Contexts;
 using AutoMapper;
 using System.Linq;
+using Cryptocop.Software.API.Models.Entities;
+using Cryptocop.Software.API.Repositories.Helpers;
 
 namespace Cryptocop.Software.API.Repositories.Implementations
 {
@@ -36,16 +38,61 @@ namespace Cryptocop.Software.API.Repositories.Implementations
             if(user == null) {throw new Exception("Something went wrong with the database");}
             
             //retrieve information from address
-            var addresses = _dbContext.Addresses.Where(i => i.UserId == user.Id);
-            //throw some error
-
+            var address = _dbContext.Addresses.FirstOrDefault(a => a.Id == order.AddressId);
+            if(address == null) {throw new Exception("No address found with this addressId");}
+            
             //retrive information from paymentcard
-            var paymentCards = _dbContext.PaymentCards.Where(p => p.UserId == user.Id);
-            //throw some error
+            var paymentCard = _dbContext.PaymentCards.FirstOrDefault(p => p.Id == order.PaymentCardId);
+            if(paymentCard == null) {throw new Exception("No card found with this PaymentCardId");}
+
+            //shopping cart to calculate total price
+            var shoppingCart = _dbContext.ShoppingCarts.FirstOrDefault(s => s.UserId == user.Id);
+            if(shoppingCart == null) {throw new Exception("This user has no shopping cart");}
+
+            //get all items within shopping cart and loop through them to calculate total price
+            float? totalPrice = 0;
+            var shoppingCartItems = _dbContext.ShoppingCartItems.Where(s => s.ShoppingCartId == shoppingCart.Id);
+            foreach(var shoppingCartItem in shoppingCartItems)
+            {
+                totalPrice += shoppingCartItem.UnitPrice * shoppingCartItem.Quantity;
+            }
 
             //create new order with credit card masked
+            var orderEntity = new Order
+            {
+              Email = email,
+              FullName = user.FullName,
+              StreetName = address.StreetName,
+              HouseNumber = address.HouseNumber,
+              ZipCode = address.ZipCode,
+              Country = address.Country,
+              City = address.City,
+              CardHolderName = paymentCard.CardholderName,
+              MaskedCreditCard = PaymentCardHelper.MaskPaymentCard(paymentCard.CardNumber),
+              OrderDate = DateTime.Now,
+              TotalPrice = totalPrice 
+            };
+            _dbContext.Orders.Add(orderEntity);
+            _dbContext.SaveChanges();
+
             //return order but with credit card unmasked
-            throw new NotImplementedException();
+            var orderDTO = new OrderDto
+            {
+                Email = email,
+                FullName = user.FullName,
+                StreetName = address.StreetName,
+                HouseNumber = address.HouseNumber,
+                ZipCode = address.ZipCode,
+                Country = address.Country,
+                City = address.City,
+                CardholderName = paymentCard.CardholderName,
+                CreditCard = paymentCard.CardNumber,
+                OrderDate = DateTime.Now.ToString(),
+                TotalPrice = totalPrice,
+
+            };
+            //need to create a list of orderitems
+            return orderDTO;
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Cryptocop.Software.API.Models.Entities
         public string CardHolderName {get; set;}
         public string MaskedCreditCard {get; set;}
         public DateTime OrderDate {get; set;}
-        public float TotalPrice {get; set;}
+        public float? TotalPrice {get; set;}
 
         //navigation properties
 

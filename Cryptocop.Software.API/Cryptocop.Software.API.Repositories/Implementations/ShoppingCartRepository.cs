@@ -26,7 +26,7 @@ namespace Cryptocop.Software.API.Repositories.Implementations
             var user = _dbContext.Users.FirstOrDefault(u => u.Email == email);
             if(user == null) {throw new Exception("Something went wrong with the database (userid)");}
 
-            var shoppingCart = _dbContext.ShoppingCart.FirstOrDefault(s => s.UserId == user.Id);
+            var shoppingCart = _dbContext.ShoppingCarts.FirstOrDefault(s => s.UserId == user.Id);
             if(shoppingCart == null) {throw new Exception("Something went wrong with the database (shoppingCart)");}
             
             var shoppingCartItems = _dbContext.ShoppingCartItems.Where(s => s.ShoppingCartId == shoppingCart.Id);
@@ -44,7 +44,7 @@ namespace Cryptocop.Software.API.Repositories.Implementations
             if(user == null) {throw new Exception("something went wrong with the database (userid)");}
 
             Console.WriteLine("before getting shopping cart");
-            var shoppingCart = _dbContext.ShoppingCart.FirstOrDefault(s => s.UserId == user.Id);
+            var shoppingCart = _dbContext.ShoppingCarts.FirstOrDefault(s => s.UserId == user.Id);
             Console.WriteLine("after getting shopping cart");
             if(shoppingCart == null) 
             {
@@ -52,7 +52,7 @@ namespace Cryptocop.Software.API.Repositories.Implementations
                 {
                     UserId = user.Id
                 };
-                _dbContext.ShoppingCart.Add(shoppingCart);
+                _dbContext.ShoppingCarts.Add(shoppingCart);
                 _dbContext.SaveChanges();
                 Console.WriteLine("inside null check");
             }
@@ -77,7 +77,7 @@ namespace Cryptocop.Software.API.Repositories.Implementations
             var user = _dbContext.Users.FirstOrDefault(u => u.Email == email);
             if(user == null) {throw new Exception("something went wrong with the database (userid)");}
 
-            var shoppingCart = _dbContext.ShoppingCart.FirstOrDefault(s => s.UserId == user.Id);
+            var shoppingCart = _dbContext.ShoppingCarts.FirstOrDefault(s => s.UserId == user.Id);
             if(user == null) {throw new Exception("something went wrong with the database (shoppingcart)");}
 
             var removedItem = _dbContext.ShoppingCartItems.FirstOrDefault(s => s.Id == id && s.ShoppingCartId == shoppingCart.Id);
@@ -93,7 +93,7 @@ namespace Cryptocop.Software.API.Repositories.Implementations
             var user = _dbContext.Users.FirstOrDefault(u => u.Email == email);
             if(user == null) {throw new Exception("something went wrong with the database (userid)");}
 
-            var shoppingCart = _dbContext.ShoppingCart.FirstOrDefault(s => s.UserId == user.Id);
+            var shoppingCart = _dbContext.ShoppingCarts.FirstOrDefault(s => s.UserId == user.Id);
             if(user == null) {throw new Exception("This user has no shopping cart");}
 
             var updatedItem = _dbContext.ShoppingCartItems.FirstOrDefault(s => s.Id == id && s.ShoppingCartId == shoppingCart.Id);
@@ -109,7 +109,7 @@ namespace Cryptocop.Software.API.Repositories.Implementations
             var user = _dbContext.Users.FirstOrDefault(u => u.Email == email);
             if(user == null) {throw new Exception("something went wrong with the database (userid)");}
             
-            var shoppingCart = _dbContext.ShoppingCart.FirstOrDefault(s => s.UserId == user.Id);
+            var shoppingCart = _dbContext.ShoppingCarts.FirstOrDefault(s => s.UserId == user.Id);
             if(user == null) {throw new Exception("This user has no shopping cart");}
 
             var shoppingCartItems = _dbContext.ShoppingCartItems.Where(s => s.ShoppingCartId == shoppingCart.Id);
@@ -122,7 +122,12 @@ namespace Cryptocop.Software.API.Repositories.Implementations
         {
             var user = _dbContext.Users.FirstOrDefault(u => u.Email == email);
             if(user == null) {throw new Exception("something went wrong with the database (userid)");}
-            throw new System.NotImplementedException();
+
+            var shoppingCart = _dbContext.ShoppingCarts.FirstOrDefault(s => s.UserId == user.Id);
+            if(shoppingCart == null) {throw new Exception("This user has no shopping cart");}
+            
+            _dbContext.ShoppingCarts.Remove(shoppingCart);
+            _dbContext.SaveChanges();
         }
     }
 }
