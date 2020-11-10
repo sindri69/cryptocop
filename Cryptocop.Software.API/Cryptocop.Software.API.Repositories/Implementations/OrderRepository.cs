@@ -57,6 +57,7 @@ namespace Cryptocop.Software.API.Repositories.Implementations
                 totalPrice += shoppingCartItem.UnitPrice * shoppingCartItem.Quantity;
             }
 
+            
             //create new order with credit card masked
             var orderEntity = new Order
             {
@@ -75,6 +76,20 @@ namespace Cryptocop.Software.API.Repositories.Implementations
             _dbContext.Orders.Add(orderEntity);
             _dbContext.SaveChanges();
 
+            //make the list for the orderdto
+            List<OrderItemDto> orderItemList = new List<OrderItemDto>();
+            foreach(var shoppingCartItem in shoppingCartItems)
+            {
+                var orderItemDTO = new OrderItemDto
+                {
+                    ProductIdentifier = shoppingCartItem.ProductIdentifier,
+                    Quantity = shoppingCartItem.Quantity,
+                    UnitPrice = shoppingCartItem.UnitPrice,
+                    TotalPrice = shoppingCartItem.Quantity * shoppingCartItem.UnitPrice
+                };
+                orderItemList.Add(orderItemDTO);
+            }
+
             //return order but with credit card unmasked
             var orderDTO = new OrderDto
             {
@@ -89,7 +104,7 @@ namespace Cryptocop.Software.API.Repositories.Implementations
                 CreditCard = paymentCard.CardNumber,
                 OrderDate = DateTime.Now.ToString(),
                 TotalPrice = totalPrice,
-
+                OrderItems = orderItemList
             };
             //need to create a list of orderitems
             return orderDTO;

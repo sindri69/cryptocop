@@ -8,11 +8,11 @@ namespace Cryptocop.Software.API.Models.Dtos
 
         public string ProductIdentifier { get; set; }
 
-        public float Quantity { get; set; }
+        public float? Quantity { get; set; }
 
-        public float UnitPrice { get; set; }
+        public float? UnitPrice { get; set; }
 
-        public float TotalPrice {get; set;}
+        public float? TotalPrice {get; set;}
 
     }
 }
