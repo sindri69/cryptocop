@@ -1,0 +1,16 @@
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\cryptocop-payments\bin\Debug\netcoreapp3.1\cryptocop-payments.exe
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\cryptocop-payments\bin\Debug\netcoreapp3.1\cryptocop-payments.deps.json
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\cryptocop-payments\bin\Debug\netcoreapp3.1\cryptocop-payments.runtimeconfig.json
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\cryptocop-payments\bin\Debug\netcoreapp3.1\cryptocop-payments.runtimeconfig.dev.json
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\cryptocop-payments\bin\Debug\netcoreapp3.1\cryptocop-payments.dll
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\cryptocop-payments\bin\Debug\netcoreapp3.1\cryptocop-payments.pdb
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\cryptocop-payments\bin\Debug\netcoreapp3.1\RabbitMQ.Client.dll
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\cryptocop-payments\bin\Debug\netcoreapp3.1\System.Threading.Channels.dll
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\cryptocop-payments\obj\Debug\netcoreapp3.1\cryptocop-payments.csprojAssemblyReference.cache
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\cryptocop-payments\obj\Debug\netcoreapp3.1\cryptocop-payments.AssemblyInfoInputs.cache
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\cryptocop-payments\obj\Debug\netcoreapp3.1\cryptocop-payments.AssemblyInfo.cs
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\cryptocop-payments\obj\Debug\netcoreapp3.1\cryptocop-payments.csproj.CoreCompileInputs.cache
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\cryptocop-payments\obj\Debug\netcoreapp3.1\cryptocop-payments.csproj.CopyComplete
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\cryptocop-payments\obj\Debug\netcoreapp3.1\cryptocop-payments.dll
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\cryptocop-payments\obj\Debug\netcoreapp3.1\cryptocop-payments.pdb
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\cryptocop-payments\obj\Debug\netcoreapp3.1\cryptocop-payments.genruntimeconfig.cache

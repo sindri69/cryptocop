@@ -14,7 +14,8 @@ namespace Cryptocop.Software.API.Mappings
             CreateMap<Address, AddressDto>();
             CreateMap<PaymentCard, PaymentCardDto>()
                 .ForMember(src => src.CardNumber, opt => opt.MapFrom(src => PaymentCardHelper.MaskPaymentCard(src.CardNumber)));
-            CreateMap<Order, OrderDto>();
+            CreateMap<Order, OrderDto>()
+                .ForMember(src => src.CreditCard, opt => opt.MapFrom(src => src.MaskedCreditCard));
             CreateMap<ShoppingCart, ShoppingCartItemDto>();
             //     .ForMember(src => src.CreatedDate, opt => opt.MapFrom(src => DateTime.Now))
             //     .ForMember(src => src.ModifiedDate, opt => opt.MapFrom(src => DateTime.Now))

@@ -30,13 +30,13 @@ namespace Cryptocop.Software.API.Services.Implementations
         public void CreateNewOrder(string email, OrderInputModel order)
         {
             //create order with repository class
-            _orderRepository.CreateNewOrder(email, order);
+            var createdOrder = _orderRepository.CreateNewOrder(email, order);
 
             // //delete current shopping cart
             _shoppingCartRepository.DeleteCart(email);
 
             // //publish message to RabbitMQ with routing key create-order
-            _queueService.PublishMessage("create-order", order);
+            _queueService.PublishMessage("create-order", createdOrder);
 
         }
     }

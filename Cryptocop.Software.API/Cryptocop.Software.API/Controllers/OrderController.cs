@@ -32,7 +32,7 @@ namespace Cryptocop.Software.API.Controllers
         {
             var email = User.Identity.Name;
             _orderService.CreateNewOrder(email, order);
-            //return created
+            //return 201 and no data
             return Ok();
         }
     }

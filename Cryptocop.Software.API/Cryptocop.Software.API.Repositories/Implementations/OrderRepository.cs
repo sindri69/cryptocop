@@ -57,6 +57,20 @@ namespace Cryptocop.Software.API.Repositories.Implementations
                 totalPrice += shoppingCartItem.UnitPrice * shoppingCartItem.Quantity;
             }
 
+            //make the list for the orderdto
+            List<OrderItemDto> orderItemList = new List<OrderItemDto>();
+            foreach(var shoppingCartItem in shoppingCartItems)
+            {
+                var orderItemDTO = new OrderItemDto
+                {
+                    ProductIdentifier = shoppingCartItem.ProductIdentifier,
+                    Quantity = shoppingCartItem.Quantity,
+                    UnitPrice = shoppingCartItem.UnitPrice,
+                    TotalPrice = shoppingCartItem.Quantity * shoppingCartItem.UnitPrice
+                };
+                orderItemList.Add(orderItemDTO);
+            }
+
             
             //create new order with credit card masked
             var orderEntity = new Order
@@ -73,24 +87,12 @@ namespace Cryptocop.Software.API.Repositories.Implementations
               MaskedCreditCard = PaymentCardHelper.MaskPaymentCard(paymentCard.CardNumber),
               OrderDate = DateTime.Now,
               TotalPrice = totalPrice,
+              //OrderItems = orderItemList
               
             };
             _dbContext.Orders.Add(orderEntity);
             _dbContext.SaveChanges();
 
-            //make the list for the orderdto
-            List<OrderItemDto> orderItemList = new List<OrderItemDto>();
-            foreach(var shoppingCartItem in shoppingCartItems)
-            {
-                var orderItemDTO = new OrderItemDto
-                {
-                    ProductIdentifier = shoppingCartItem.ProductIdentifier,
-                    Quantity = shoppingCartItem.Quantity,
-                    UnitPrice = shoppingCartItem.UnitPrice,
-                    TotalPrice = shoppingCartItem.Quantity * shoppingCartItem.UnitPrice
-                };
-                orderItemList.Add(orderItemDTO);
-            }
 
             //return order but with credit card unmasked
             var orderDTO = new OrderDto

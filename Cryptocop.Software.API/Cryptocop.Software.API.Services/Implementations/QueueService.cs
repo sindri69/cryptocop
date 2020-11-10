@@ -13,25 +13,28 @@ namespace Cryptocop.Software.API.Services.Implementations
         public void PublishMessage(string routingKey, object body)
         {
             
-            /*var factory = new ConnectionFactory() { HostName = "localhost" };
+            var factory = new ConnectionFactory() { HostName = "localhost" };
             using(var connection = factory.CreateConnection())
             using(var channel = connection.CreateModel())
             {
-                channel.ExchangeDeclare(exchange: "logs", type: ExchangeType.Fanout);
+                channel.ExchangeDeclare(exchange: "order", type: ExchangeType.Fanout);
 
-                var body2 = Encoding.UTF8.GetBytes(body);
+                var body2 = Encoding.UTF8.GetBytes(body.ToString());
                 channel.BasicPublish(exchange: "order",
                                     routingKey: routingKey,
+                                    mandatory: true,
                                     basicProperties: null,
                                     body: body2);
                 
-            }*/
+            }
+            Console.WriteLine("end of publishmessage");
         }
 
         public void Dispose()
         {
-            // TODO: Dispose the connection and channel
-            throw new NotImplementedException();
+            //channel.Close();
+            //conn.Close();
+            Console.WriteLine("inside dispose");
         }
     }
 }

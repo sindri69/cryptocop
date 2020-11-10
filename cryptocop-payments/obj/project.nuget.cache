@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "sUt/oH8hbx8J5y4ek37/CjZn2IOv++d+L9LYwgneTXy6ZY4ulPyb7OFZXlGc7Ap9qTlqNFhBtMHZOWhVpTQN4g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\David\\Desktop\\dis_shit\\vefthjonustur\\final_assignment\\cryptocop\\cryptocop-payments\\cryptocop-payments.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\David\\.nuget\\packages\\rabbitmq.client\\6.2.1\\rabbitmq.client.6.2.1.nupkg.sha512",
+    "C:\\Users\\David\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
+    "C:\\Users\\David\\.nuget\\packages\\system.threading.channels\\4.7.1\\system.threading.channels.4.7.1.nupkg.sha512"
+  ],
+  "logs": []
+}
