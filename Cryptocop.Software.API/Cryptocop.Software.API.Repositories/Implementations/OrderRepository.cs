@@ -46,7 +46,7 @@ namespace Cryptocop.Software.API.Repositories.Implementations
             if(paymentCard == null) {throw new Exception("No card found with this PaymentCardId");}
 
             //shopping cart to calculate total price
-            var shoppingCart = _dbContext.ShoppingCarts.FirstOrDefault(s => s.UserId == user.Id);
+            var shoppingCart = _dbContext.ShoppingCart.FirstOrDefault(s => s.UserId == user.Id);
             if(shoppingCart == null) {throw new Exception("This user has no shopping cart");}
 
             //get all items within shopping cart and loop through them to calculate total price
@@ -63,6 +63,7 @@ namespace Cryptocop.Software.API.Repositories.Implementations
             {
               Email = email,
               FullName = user.FullName,
+              UserId = user.Id,
               StreetName = address.StreetName,
               HouseNumber = address.HouseNumber,
               ZipCode = address.ZipCode,
@@ -71,7 +72,8 @@ namespace Cryptocop.Software.API.Repositories.Implementations
               CardHolderName = paymentCard.CardholderName,
               MaskedCreditCard = PaymentCardHelper.MaskPaymentCard(paymentCard.CardNumber),
               OrderDate = DateTime.Now,
-              TotalPrice = totalPrice 
+              TotalPrice = totalPrice,
+              
             };
             _dbContext.Orders.Add(orderEntity);
             _dbContext.SaveChanges();
