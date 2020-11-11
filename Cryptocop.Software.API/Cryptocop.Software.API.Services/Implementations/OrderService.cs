@@ -34,6 +34,8 @@ namespace Cryptocop.Software.API.Services.Implementations
 
             // //delete current shopping cart
             _shoppingCartRepository.DeleteCart(email);
+            Console.WriteLine("created order");
+            Console.WriteLine(createdOrder);
 
             // //publish message to RabbitMQ with routing key create-order
             Console.WriteLine("Before publishmessage is called in orderservice");
