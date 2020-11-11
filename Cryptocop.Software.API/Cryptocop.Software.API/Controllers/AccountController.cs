@@ -34,7 +34,6 @@ namespace Cryptocop.Software.API.Controllers
                 Type = c.Type,
                 Value = c.Value
             });
-            Console.WriteLine(claims);
             if (!ModelState.IsValid) { return BadRequest("Model is not properly formatted."); }
             var returnedUser = _accountService.CreateUser(user);
             return Ok(_tokenService.GenerateJwtToken(returnedUser));

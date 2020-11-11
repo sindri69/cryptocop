@@ -15,9 +15,7 @@ namespace Cryptocop.Software.API.Services.Implementations
         public async Task<Envelope<ExchangeDto>> GetExchanges(int pageNumber = 1)
         {
             if(pageNumber < 1) {throw new Exception("pageNumber should not be lower than 1");}
-            Console.WriteLine(pageNumber);
             var path = "https://data.messari.io/api/v1/markets?Pagenumber=" + pageNumber +"?";
-            Console.WriteLine(path);
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));

@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Cryptocop.Software.API.Models.InputModels;
 using Cryptocop.Software.API.Services.Interfaces;
 using System.Linq;
+using System.Net;
+using Microsoft.AspNetCore.Http;
 
 namespace Cryptocop.Software.API.Controllers
 {
@@ -35,7 +37,7 @@ namespace Cryptocop.Software.API.Controllers
             var email = User.Identity.Name;
             _addressService.AddAddress(email, addressInput);
     
-            return Ok("Address was successfully added");
+            return new ObjectResult("Address added to database") { StatusCode = StatusCodes.Status201Created };
             
         }
 

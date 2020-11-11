@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Cryptocop.Software.API.Models.InputModels;
 using Cryptocop.Software.API.Services.Interfaces;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace Cryptocop.Software.API.Controllers
 {
@@ -27,7 +28,7 @@ namespace Cryptocop.Software.API.Controllers
             var email = User.Identity.Name;
             //return created?
             await _shoppingCartService.AddCartItem(email, shoppingCartItem);
-            return Ok();
+            return new ObjectResult("ShoppingCartItem added to database") { StatusCode = StatusCodes.Status201Created };
         }
 
         [HttpDelete]

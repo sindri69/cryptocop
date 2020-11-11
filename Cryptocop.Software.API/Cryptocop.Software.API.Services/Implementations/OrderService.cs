@@ -36,7 +36,9 @@ namespace Cryptocop.Software.API.Services.Implementations
             _shoppingCartRepository.DeleteCart(email);
 
             // //publish message to RabbitMQ with routing key create-order
+            Console.WriteLine("Before publishmessage is called in orderservice");
             _queueService.PublishMessage("create-order", createdOrder);
+            Console.WriteLine("After publishmessage is called in orderservice");
 
         }
     }

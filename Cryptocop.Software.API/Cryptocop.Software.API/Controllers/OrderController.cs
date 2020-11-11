@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Cryptocop.Software.API.Models.InputModels;
 using Cryptocop.Software.API.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace Cryptocop.Software.API.Controllers
 {
@@ -32,8 +33,7 @@ namespace Cryptocop.Software.API.Controllers
         {
             var email = User.Identity.Name;
             _orderService.CreateNewOrder(email, order);
-            //return 201 and no data
-            return Ok();
+            return new ObjectResult("Order added to database") { StatusCode = StatusCodes.Status201Created };
         }
     }
 }

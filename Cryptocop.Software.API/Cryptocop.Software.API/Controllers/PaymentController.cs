@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Cryptocop.Software.API.Models.InputModels;
 using Cryptocop.Software.API.Services.Implementations;
 using Cryptocop.Software.API.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace Cryptocop.Software.API.Controllers
 {
@@ -33,7 +34,7 @@ namespace Cryptocop.Software.API.Controllers
             if (!ModelState.IsValid) { return BadRequest("Model is not properly formatted."); }
             var email = User.Identity.Name;
             _paymentService.AddPaymentCard(email, paymentCard);
-            return Ok();
+            return new ObjectResult("Creditcard added to database") { StatusCode = StatusCodes.Status201Created };
         }
     }
 }

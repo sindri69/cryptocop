@@ -3,5 +3,7 @@
     public interface IQueueService
     {
         void PublishMessage(string routingKey, object body);
+
+        void Dispose();
     }
 }
