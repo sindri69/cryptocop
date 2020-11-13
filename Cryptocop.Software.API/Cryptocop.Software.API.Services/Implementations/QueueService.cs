@@ -48,7 +48,7 @@ namespace Cryptocop.Software.API.Services.Implementations
 
         public void Dispose()
         {
-            Console.WriteLine("inside dispose, before everything is closed");
+            
             channel.Close();
             connection.Close();
             Console.WriteLine("inside dispose, after everything is closed");
