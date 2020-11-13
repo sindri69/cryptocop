@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "uFVL9t39zppjuvIFHyiGFLbFuQD3DYZio/AUW5R2vqdU1Xac/O2ouDwdeXXw6vLvfGjEt1L08WwrFY67fyhWUg==",
+  "dgSpecHash": "oru4Aa+wI9XK8GFfK/8k3TaAsxB3rgsZ6ZI+h1bcs76SHLezLEG4ob8qno0Ha2UPV67YKnjAAOhrquET5z8M8A==",
   "success": true,
   "projectFilePath": "C:\\Users\\David\\Desktop\\dis_shit\\vefthjonustur\\final_assignment\\cryptocop\\cryptocop-payments\\cryptocop-payments.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\David\\.nuget\\packages\\creditcardvalidator\\2.0.1\\creditcardvalidator.2.0.1.nupkg.sha512",
     "C:\\Users\\David\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\David\\.nuget\\packages\\rabbitmq.client\\6.2.1\\rabbitmq.client.6.2.1.nupkg.sha512",
     "C:\\Users\\David\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",

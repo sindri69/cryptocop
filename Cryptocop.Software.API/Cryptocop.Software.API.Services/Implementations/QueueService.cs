@@ -6,6 +6,7 @@ using System;
 using System.Text;
 using Newtonsoft.Json.Serialization;
 
+
 namespace Cryptocop.Software.API.Services.Implementations
 {
     //notes fyrir order
@@ -32,8 +33,9 @@ namespace Cryptocop.Software.API.Services.Implementations
             
         
             channel.ExchangeDeclare(exchange: "order", type: ExchangeType.Fanout);
+            
 
-            var body2 = Encoding.UTF8.GetBytes(body.ToString());
+            var body2 = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(body));
             channel.BasicPublish(exchange: "order",
                                 routingKey: routingKey,
                                 mandatory: true,

@@ -15,3 +15,4 @@ C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\cryptoc
 C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\cryptocop-payments\obj\Debug\netcoreapp3.1\cryptocop-payments.pdb
 C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\cryptocop-payments\obj\Debug\netcoreapp3.1\cryptocop-payments.genruntimeconfig.cache
 C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\cryptocop-payments\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\David\Desktop\dis_shit\vefthjonustur\final_assignment\cryptocop\cryptocop-payments\bin\Debug\netcoreapp3.1\CreditCardValidator.dll

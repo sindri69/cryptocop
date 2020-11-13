@@ -41,6 +41,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "CreditCardValidator": {
+              "target": "Package",
+              "version": "[2.0.1, )"
+            },
             "RabbitMQ.Client": {
               "target": "Package",
               "version": "[6.2.1, )"
