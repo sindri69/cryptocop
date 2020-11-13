@@ -42,8 +42,6 @@ namespace Cryptocop.Software.API.Repositories.Implementations
         {
             var userId = _dbContext.Users.FirstOrDefault(u => u.Email == email).Id;
             var addresses = _dbContext.Addresses.Where(i => i.UserId == userId);
-            //throw error if there are no addresses?
-            //skilar empty enumerable if thetta er tomt
             return _mapper.Map<IEnumerable<AddressDto>>(addresses);
         }
 

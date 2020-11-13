@@ -29,7 +29,6 @@ namespace Cryptocop.Software.API.Services.Implementations
 
     public void PublishMessage(string routingKey, object body)
         {
-            Console.WriteLine("Start of publishMessage");
             
         
             channel.ExchangeDeclare(exchange: "order", type: ExchangeType.Fanout);
@@ -43,7 +42,7 @@ namespace Cryptocop.Software.API.Services.Implementations
                                 body: body2);
                 
             
-            Console.WriteLine("end of publishmessage");
+       
         }
 
         public void Dispose()
@@ -51,7 +50,7 @@ namespace Cryptocop.Software.API.Services.Implementations
             
             channel.Close();
             connection.Close();
-            Console.WriteLine("inside dispose, after everything is closed");
+          
         }
     }
 }

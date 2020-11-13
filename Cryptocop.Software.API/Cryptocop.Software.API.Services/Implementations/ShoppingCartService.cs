@@ -58,6 +58,6 @@ namespace Cryptocop.Software.API.Services.Implementations
             _shoppingCartRepository.ClearCart(email);
         }
 
-        //vantar kannski delete cart fall
+
     }
 }

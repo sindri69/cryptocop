@@ -31,7 +31,6 @@ namespace Cryptocop.Software.API.Repositories.Implementations
             
             var shoppingCartItems = _dbContext.ShoppingCartItems.Where(s => s.ShoppingCartId == shoppingCart.Id);
             
-            //skilar empty enumerable if thetta er tomt
             return _mapper.Map<IEnumerable<ShoppingCartItemDto>>(shoppingCartItems);
         }
 

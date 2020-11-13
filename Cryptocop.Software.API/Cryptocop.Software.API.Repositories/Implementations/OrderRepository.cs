@@ -58,10 +58,10 @@ namespace Cryptocop.Software.API.Repositories.Implementations
             }
 
             //make the list for the orderdto and orderitementity
-            //List<OrderItem> orderItemEntityList = new List<OrderItem>();
             List<OrderItemDto> orderItemList = new List<OrderItemDto>();
             foreach(var shoppingCartItem in shoppingCartItems)
             {
+                
                 var orderItemDTO = new OrderItemDto
                 {
                     ProductIdentifier = shoppingCartItem.ProductIdentifier,
@@ -70,21 +70,22 @@ namespace Cryptocop.Software.API.Repositories.Implementations
                     TotalPrice = shoppingCartItem.Quantity * shoppingCartItem.UnitPrice
                 };
                 orderItemList.Add(orderItemDTO);
-                
-                
-                //  var orderItemEntity = new OrderItem
-                //  {
-                //      ProductIdentifier = shoppingCartItem.ProductIdentifier,
-                //      Quantity = shoppingCartItem.Quantity,
-                //      UnitPrice = shoppingCartItem.UnitPrice,
-                //      TotalPrice = shoppingCartItem.Quantity * shoppingCartItem.UnitPrice
-                //  };
-                //  orderItemEntityList.Add(orderItemEntity);
-                //  _dbContext.OrderItems.Add(orderItemEntity);
-                // _dbContext.SaveChanges();
-
             }
-
+            // List<OrderItem> orderItemEntityList = new List<OrderItem>();
+            // foreach(var shoppingCartItem in shoppingCartItems)
+            // {
+            //     Console.WriteLine("inside foreach orderitem");
+            //     var orderItemEntity = new OrderItem
+            //     {
+            //         ProductIdentifier = shoppingCartItem.ProductIdentifier,
+            //         Quantity = shoppingCartItem.Quantity,
+            //         UnitPrice = shoppingCartItem.UnitPrice,
+            //         TotalPrice = shoppingCartItem.Quantity * shoppingCartItem.UnitPrice
+            //     };
+            //     orderItemEntityList.Add(orderItemEntity);
+            //     _dbContext.OrderItems.Add(orderItemEntity);
+            //     _dbContext.SaveChanges();
+            // }
             
             //create new order with credit card masked
             var orderEntity = new Order
@@ -104,7 +105,7 @@ namespace Cryptocop.Software.API.Repositories.Implementations
               //OrderItems = orderItemEntityList
               
             };
-            Console.WriteLine(orderEntity.OrderItems);
+            //Console.WriteLine(orderEntity.OrderItems);
             _dbContext.Orders.Add(orderEntity);
             _dbContext.SaveChanges();
 
