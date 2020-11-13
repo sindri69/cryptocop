@@ -121,7 +121,7 @@ namespace Cryptocop.Software.API.Repositories.Implementations
                 City = address.City,
                 CardholderName = paymentCard.CardholderName,
                 CreditCard = paymentCard.CardNumber,
-                OrderDate = DateTime.Now.ToString(),
+                OrderDate = DateTime.Now.ToString("MM/dd/yyyy"),
                 TotalPrice = totalPrice,
                 OrderItems = orderItemList
             };

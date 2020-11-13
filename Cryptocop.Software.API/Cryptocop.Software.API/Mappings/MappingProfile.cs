@@ -17,26 +17,7 @@ namespace Cryptocop.Software.API.Mappings
             CreateMap<Order, OrderDto>()
                 .ForMember(src => src.CreditCard, opt => opt.MapFrom(src => src.MaskedCreditCard));
             CreateMap<ShoppingCart, ShoppingCartItemDto>();
-            //     .ForMember(src => src.CreatedDate, opt => opt.MapFrom(src => DateTime.Now))
-            //     .ForMember(src => src.ModifiedDate, opt => opt.MapFrom(src => DateTime.Now))
-            //     .ForMember(src => src.ModifiedBy, opt => opt.MapFrom(src => "TechnicalRadiationAdmin"));
 
-            // CreateMap<Category, CategoryDto>()
-            //     .ForMember(src => src.Slug, opt => opt.MapFrom<SlugResolver>());
-
-            // CreateMap<Category, CategoryDetailDto>()
-            //     .ForMember(src => src.Slug, opt => opt.MapFrom<DetailSlugResolver>());
-
-            // CreateMap<CategoryInputModel, Category>()
-            //     .ForMember(src => src.CreatedDate, opt => opt.MapFrom(src => DateTime.Now))
-            //     .ForMember(src => src.ModifiedDate, opt => opt.MapFrom(src => DateTime.Now))
-            //     .ForMember(src => src.ModifiedBy, opt => opt.MapFrom(src => "TechnicalRadiationAdmin"));
-            // CreateMap<Author, AuthorDto>();
-            // CreateMap<Author, AuthorDetailDto>();
-            // CreateMap<AuthorInputModel, Author>()
-            //     .ForMember(src => src.ModifiedDate, opt => opt.MapFrom(src => DateTime.Now))
-            //     .ForMember(src => src.CreatedDate, opt => opt.MapFrom(src => DateTime.Now ))
-            //     .ForMember(src => src.ModifiedBy, opt => opt.MapFrom(src => "TechnicalRadiationAdmin"));
         }
     }
 }

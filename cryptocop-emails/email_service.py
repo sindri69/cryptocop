@@ -62,7 +62,7 @@ def send_order_email(ch, method, properties, data):
     date = order.OrderDate
     price = order.TotalPrice
 
-    print(recipient)
+
 
     fullNameHTML = '<p> Name: ' + fullName + '</p> </br>'
     addressHTML = '<p> Address: ' + streetName + houseNumber + '</p> </br>'
@@ -76,7 +76,7 @@ def send_order_email(ch, method, properties, data):
     email_template = email_greeting + fullNameHTML + addressHTML + cityHTML + zipCodeHTML + countryHTML + dateHTML + priceHTML
 
     send_simple_message(recipient, 'Your order from CryptoCop (sindrii17)', email_template)
-    print("Email successfully sent")
+    print("Email successfully sent to " + recipient)
 
 channel.basic_consume(
     queue=queue_name, on_message_callback=send_order_email, auto_ack=True)
